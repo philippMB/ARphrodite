@@ -7,11 +7,21 @@
 //
 
 import UIKit
+import CommunicationManager
 
 class ViewController: UIViewController {
-
+    let commManager = CommunicationManagerSM.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        DispatchQueue.global().async {
+            while true {
+                print(self.commManager.peers)
+                sleep(2)
+            }
+        }
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
