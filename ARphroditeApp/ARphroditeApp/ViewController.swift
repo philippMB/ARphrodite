@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var browsingView: UITableView!
     
+    let connectionAlert = ConnectionAlert()
     let commManager = CommunicationManagerSM.sharedInstance
     
     override func viewDidLoad() {
@@ -27,9 +28,12 @@ class ViewController: UIViewController {
         browsingView.separatorStyle = .none
         browsingView.rowHeight = 60.0
         
+        self.view.addSubview(connectionAlert)
+        self.view.bringSubview(toFront: connectionAlert)
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -70,6 +74,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.connectionAlert.isHidden = false
+        UIView.animate(withDuration: 0.15, animations: {
+            self.connectionAlert.alpha = 1.0
+        })
+        
         print("Selected")
     }
 }
