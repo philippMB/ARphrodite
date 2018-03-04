@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         browsingView.delegate = self
         browsingView.register(TableViewCell.self, forCellReuseIdentifier: "cell")
         
+        browsingView.alwaysBounceVertical = false
         browsingView.separatorStyle = .none
         browsingView.rowHeight = 60.0
         
@@ -78,5 +79,15 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         UIView.animate(withDuration: 0.15, animations: {
             self.connectionAlert!.alpha = 1.0
         })
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UILabel()
+        headerView.backgroundColor = UIColor.clear
+        headerView.font = UIFont.boldSystemFont(ofSize: 20)
+        headerView.text = "Spielersuche"
+        headerView.textAlignment = .center
+        
+        return headerView
     }
 }
