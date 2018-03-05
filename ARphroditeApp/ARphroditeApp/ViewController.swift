@@ -15,9 +15,12 @@ class ViewController: UIViewController {
     
     var connectionAlert:ConnectionAlert?
     let commManager = CommunicationManagerSM.sharedInstance
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let backgroundImage = UIImage(named: "Background")
+        self.view.backgroundColor = UIColor(patternImage: backgroundImage!)
         
         commManager.delegate = self
         
@@ -25,6 +28,7 @@ class ViewController: UIViewController {
         browsingView.delegate = self
         browsingView.register(TableViewCell.self, forCellReuseIdentifier: "cell")
         
+        browsingView.backgroundColor = UIColor.clear
         browsingView.alwaysBounceVertical = false
         browsingView.separatorStyle = .none
         browsingView.rowHeight = 60.0
@@ -64,7 +68,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func colorForIndex(_ index: Int) -> UIColor {
         let itemCount = commManager.peers.count
         let value = 0.95 - (CGFloat(index) / CGFloat(itemCount)) * 0.1
-        return UIColor(red: value, green: value, blue: value, alpha: 1.0)
+        return UIColor(red: value, green: value, blue: value, alpha: 0.7)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -72,7 +76,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Schön machen
+        //TODO: Schön machen
         connectionAlert = ConnectionAlert(name: ((tableView.cellForRow(at: indexPath)?.textLabel)?.text!)!)
         self.view.addSubview(connectionAlert!)
         self.view.bringSubview(toFront: connectionAlert!)
