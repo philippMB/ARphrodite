@@ -10,7 +10,7 @@ import UIKit
 import CommunicationManager
 
 class ViewController: UIViewController {
-    
+        
     @IBOutlet weak var browsingView: UITableView!
     
     var connectionAlert:ConnectionAlert?
@@ -47,6 +47,12 @@ extension ViewController: CommunicationDelegate {
     func peersUpdated() {
         self.browsingView.reloadData()
     }
+}
+
+extension ViewController: ControllerCallbackDelegate {
+    func cancelAction() {
+        self.connectionAlert?.removeFromSuperview()
+    }
     
     
 }
@@ -77,6 +83,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TODO: Schön machen
         connectionAlert = ConnectionAlert(name: ((tableView.cellForRow(at: indexPath)?.textLabel)?.text!)!)
+        connectionAlert?.ctrlDelegate = self
         self.view.addSubview(connectionAlert!)
         self.view.bringSubview(toFront: connectionAlert!)
         UIView.animate(withDuration: 0.15, animations: {

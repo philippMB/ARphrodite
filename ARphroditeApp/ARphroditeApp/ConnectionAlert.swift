@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol ControllerCallbackDelegate {
+    func cancelAction()
+}
+
 class ConnectionAlert: UIView, UIGestureRecognizerDelegate {
+    
+    var ctrlDelegate: ControllerCallbackDelegate?
+    
     let screenSize = UIScreen.main.bounds.size
     let alertView = UIView()
     let label = UILabel()
@@ -87,7 +94,9 @@ class ConnectionAlert: UIView, UIGestureRecognizerDelegate {
             }
         } else if recognizer.state == .ended {
             if deltaY! < CGFloat(60.0) && deltaX! < CGFloat(60.0) {
-                print("Cancel")
+                if let delegate = ctrlDelegate {
+                    delegate.cancelAction()
+                }
             } else {
                 alertView.transform = CGAffineTransform(translationX: UIScreen.main.bounds.size.width*0.5 - alertView.center.x, y: UIScreen.main.bounds.size.height*0.5 - alertView.center.y)
                 cancelIconView?.transform = CGAffineTransform(scaleX: (cancelImage?.size.width)!/(cancelIconView?.bounds.width)!, y: (cancelImage?.size.height)!/(cancelIconView?.bounds.height)!)
