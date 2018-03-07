@@ -81,8 +81,14 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO: Schön machen
-        connectionAlert = ConnectionAlert(name: ((tableView.cellForRow(at: indexPath)?.textLabel)?.text!)!)
+        if let peerName = tableView.cellForRow(at: indexPath)?.textLabel?.text! {
+            connectionAlert = ConnectionAlert(name: peerName)
+        } else {
+            connectionAlert = ConnectionAlert(name: "Partner")
+        }
+        DispatchQueue.global().async {
+            self.commManager.connect(to: indexPath[1])
+        }
         connectionAlert?.ctrlDelegate = self
         self.view.addSubview(connectionAlert!)
         self.view.bringSubview(toFront: connectionAlert!)
