@@ -44,6 +44,17 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: CommunicationDelegate {
+    func connectionEstablished() {
+        
+    }
+    
+    func connectionFailed() {
+        DispatchQueue.main.sync {
+            self.connectionAlert?.removeFromSuperview()
+        }
+        
+    }
+    
     func peersUpdated() {
         self.browsingView.reloadData()
     }
@@ -51,7 +62,7 @@ extension ViewController: CommunicationDelegate {
 
 extension ViewController: ControllerCallbackDelegate {
     func cancelAction() {
-        self.connectionAlert?.removeFromSuperview()
+        self.commManager.cancel()
     }
     
     
