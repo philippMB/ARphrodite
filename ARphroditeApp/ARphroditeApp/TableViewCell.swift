@@ -29,14 +29,16 @@ class TableViewCell: UITableViewCell {
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         if selected {
-            let bgColor = self.backgroundColor
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.backgroundColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 0.8)
+            DispatchQueue.main.async {
+                let bgColor = self.backgroundColor
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.backgroundColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 0.8)
                 }) { (Bool) -> Void in
                     UIView.animate(withDuration: 0.1, animations: { () -> Void in
                         self.backgroundColor = bgColor
-                }
-            )}
+                    }
+                    )}
+            }
         }
     }
     

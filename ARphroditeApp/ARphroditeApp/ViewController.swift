@@ -13,7 +13,7 @@ class ViewController: UIViewController {
         
     @IBOutlet weak var browsingView: UITableView!
     
-    var connectionAlert:ConnectionAlert?
+    var connectionAlert:AlertView?
     let commManager = CommunicationManagerSM.sharedInstance
         
     override func viewDidLoad() {
@@ -93,9 +93,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let peerName = tableView.cellForRow(at: indexPath)?.textLabel?.text! {
-            connectionAlert = ConnectionAlert(name: peerName)
+            connectionAlert = InvitationView(name: peerName)
         } else {
-            connectionAlert = ConnectionAlert(name: "Partner")
+            connectionAlert = CancelView(name: "Partner")
         }
         DispatchQueue.global().async {
             self.commManager.connect(to: indexPath[1])
@@ -103,7 +103,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         connectionAlert?.ctrlDelegate = self
         self.view.addSubview(connectionAlert!)
         self.view.bringSubview(toFront: connectionAlert!)
-        UIView.animate(withDuration: 0.15, animations: {
+        UIView.animate(withDuration: 0.1, animations: {
             self.connectionAlert!.alpha = 1.0
         })
     }

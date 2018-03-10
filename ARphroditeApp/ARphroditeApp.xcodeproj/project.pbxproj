@@ -16,8 +16,10 @@
 		17EBDB62204690F900C7FCF7 /* ARphroditeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EBDB61204690F900C7FCF7 /* ARphroditeAppUITests.swift */; };
 		17EBDC552049539400C7FCF7 /* CommunicationManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17EBDC522049534200C7FCF7 /* CommunicationManager.framework */; };
 		17EBDC562049539400C7FCF7 /* CommunicationManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 17EBDC522049534200C7FCF7 /* CommunicationManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		17ECA30A205400130041490D /* CancelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ECA309205400130041490D /* CancelView.swift */; };
+		17ECA30C205416060041490D /* InvitationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ECA30B205416060041490D /* InvitationView.swift */; };
 		17FA035A204B6EB100FCDB13 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA0359204B6EB100FCDB13 /* TableViewCell.swift */; };
-		17FA0360204C56A400FCDB13 /* ConnectionAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA035F204C56A400FCDB13 /* ConnectionAlert.swift */; };
+		17FA0360204C56A400FCDB13 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA035F204C56A400FCDB13 /* AlertView.swift */; };
 		9235E99E52256E8D0CC9F867 /* Pods_ARphroditeAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9114E6CB57DD36B8FB54AE8D /* Pods_ARphroditeAppTests.framework */; };
 		C60579A7F213E3E2E72101E2 /* Pods_ARphroditeAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB22A8F016BDAAC0E12F719 /* Pods_ARphroditeAppUITests.framework */; };
 		FA8A6A288A84C26F6F84EABE /* Pods_ARphroditeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E11B45CA901CBA12FCD4229B /* Pods_ARphroditeApp.framework */; };
@@ -91,8 +93,10 @@
 		17EBDB61204690F900C7FCF7 /* ARphroditeAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARphroditeAppUITests.swift; sourceTree = "<group>"; };
 		17EBDB63204690F900C7FCF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17EBDC4C2049534200C7FCF7 /* CommunicationManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommunicationManager.xcodeproj; path = ../../Frameworks/CommunicationManagerFramework/CommunicationManager/CommunicationManager.xcodeproj; sourceTree = "<group>"; };
+		17ECA309205400130041490D /* CancelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelView.swift; sourceTree = "<group>"; };
+		17ECA30B205416060041490D /* InvitationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationView.swift; sourceTree = "<group>"; };
 		17FA0359204B6EB100FCDB13 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		17FA035F204C56A400FCDB13 /* ConnectionAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionAlert.swift; sourceTree = "<group>"; };
+		17FA035F204C56A400FCDB13 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		43C7CFB5CA5EFDC32157C871 /* Pods-ARphroditeAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARphroditeAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARphroditeAppUITests/Pods-ARphroditeAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4F690DBB3B26F5ED1DD501FC /* Pods-ARphroditeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARphroditeApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARphroditeApp/Pods-ARphroditeApp.release.xcconfig"; sourceTree = "<group>"; };
 		51B1AF4E37B3964C6287CBD0 /* Pods-ARphroditeAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARphroditeAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARphroditeAppTests/Pods-ARphroditeAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -160,7 +164,9 @@
 			children = (
 				17EBDB41204690F800C7FCF7 /* AppDelegate.swift */,
 				17EBDB43204690F800C7FCF7 /* ViewController.swift */,
-				17FA035F204C56A400FCDB13 /* ConnectionAlert.swift */,
+				17FA035F204C56A400FCDB13 /* AlertView.swift */,
+				17ECA30B205416060041490D /* InvitationView.swift */,
+				17ECA309205400130041490D /* CancelView.swift */,
 				17FA0359204B6EB100FCDB13 /* TableViewCell.swift */,
 				17EBDB45204690F800C7FCF7 /* Main.storyboard */,
 				17EBDB48204690F800C7FCF7 /* Assets.xcassets */,
@@ -538,10 +544,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17FA0360204C56A400FCDB13 /* ConnectionAlert.swift in Sources */,
+				17FA0360204C56A400FCDB13 /* AlertView.swift in Sources */,
 				17FA035A204B6EB100FCDB13 /* TableViewCell.swift in Sources */,
 				17EBDB44204690F800C7FCF7 /* ViewController.swift in Sources */,
 				17EBDB42204690F800C7FCF7 /* AppDelegate.swift in Sources */,
+				17ECA30A205400130041490D /* CancelView.swift in Sources */,
+				17ECA30C205416060041490D /* InvitationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
