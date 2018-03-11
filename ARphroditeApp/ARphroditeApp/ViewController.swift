@@ -55,7 +55,15 @@ extension ViewController: CommunicationDelegate {
     }
     
     func connectionEstablished() {
-        
+        DispatchQueue.main.async {
+            self.connectionAlert?.removeFromSuperview()
+        }
+        DispatchQueue.global().async {
+            while true {
+                self.commManager.temp()
+                sleep(2)
+            }
+        }
     }
     
     func connectionFailed() {
@@ -70,6 +78,10 @@ extension ViewController: CommunicationDelegate {
 }
 
 extension ViewController: ControllerCallbackDelegate {
+    func acceptAction() {
+        self.commManager.accept()
+    }
+    
     func cancelAction() {
         self.commManager.cancel()
         DispatchQueue.main.async {

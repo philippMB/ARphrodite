@@ -91,7 +91,7 @@ class InvitationView: AlertView {
                 }
             } else if deltaYAccept < CGFloat(60.0) && deltaXAccept < CGFloat(60.0) {
                 if let delegate = ctrlDelegate {
-                    print("Accept")
+                    delegate.acceptAction()
                 }
             } else {
                 alertView.transform = CGAffineTransform(translationX: UIScreen.main.bounds.size.width*0.5 - alertView.center.x, y: UIScreen.main.bounds.size.height*0.5 - alertView.center.y)

@@ -10,6 +10,7 @@ import UIKit
 
 protocol ControllerCallbackDelegate {
     func cancelAction()
+    func acceptAction()
 }
 
 class AlertView: UIView, UIGestureRecognizerDelegate {
