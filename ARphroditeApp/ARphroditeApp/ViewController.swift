@@ -44,15 +44,24 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: CommunicationDelegate {
+    func receivedInvitation(from peer: String) {
+        connectionAlert = InvitationView(name: peer)
+        connectionAlert?.ctrlDelegate = self
+        self.view.addSubview(connectionAlert!)
+        self.view.bringSubview(toFront: connectionAlert!)
+        UIView.animate(withDuration: 0.1, animations: {
+            self.connectionAlert!.alpha = 1.0
+        })
+    }
+    
     func connectionEstablished() {
         
     }
     
     func connectionFailed() {
-        DispatchQueue.main.sync {
+        DispatchQueue.main.async {
             self.connectionAlert?.removeFromSuperview()
         }
-        
     }
     
     func peersUpdated() {
@@ -63,9 +72,10 @@ extension ViewController: CommunicationDelegate {
 extension ViewController: ControllerCallbackDelegate {
     func cancelAction() {
         self.commManager.cancel()
+        DispatchQueue.main.async {
+            self.connectionAlert?.removeFromSuperview()
+        }
     }
-    
-    
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
@@ -93,7 +103,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let peerName = tableView.cellForRow(at: indexPath)?.textLabel?.text! {
-            connectionAlert = InvitationView(name: peerName)
+            connectionAlert = CancelView(name: peerName)
         } else {
             connectionAlert = CancelView(name: "Partner")
         }

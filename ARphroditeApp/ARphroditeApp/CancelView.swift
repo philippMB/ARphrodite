@@ -11,8 +11,8 @@ import UIKit
 class CancelView: AlertView {
     
     var originalCenter = CGPoint()
-    var deltaX:CGFloat?
-    var deltaY:CGFloat?
+    var deltaX:CGFloat = 100.0
+    var deltaY:CGFloat = 100.0
     
     init(name: String) {
         super.init()
@@ -21,16 +21,20 @@ class CancelView: AlertView {
         let boldTextAttribute = [NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 17)]
         let nameString = NSMutableAttributedString(string: name, attributes: boldTextAttribute)
         
-        let textFragment1 = "Verbindung mit "
-        let alertText = NSMutableAttributedString(string: textFragment1)
+        let alertBase = NSMutableAttributedString(string: "ᗋ", attributes: [.foregroundColor : UIColor.red])
+        let acceptText = NSMutableAttributedString(string: " Abbrechen ")
+        let redArrow = NSMutableAttributedString(string: "ᗋ", attributes: [.foregroundColor : UIColor.red])
+        alertBase.append(acceptText)
+        alertBase.append(redArrow)
         
-        let textFragment2 = " wird hergestellt.\nZum Abbrechen nach oben wischen"
-        let alertTextFragment1 = NSMutableAttributedString(string: textFragment2)
-        
+        let alertText = NSMutableAttributedString(string: "\n\nVerbindung mit ")
         alertText.append(nameString)
-        alertText.append(alertTextFragment1)
+        let alertText1 = NSMutableAttributedString(string: " wird hergestellt.")
+        alertText.append(alertText1)
+        
+        alertBase.append(alertText)
 
-        dialog.attributedText = alertText
+        dialog.attributedText = alertBase
         
         // Pan recognizer init
         let recognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
@@ -51,12 +55,12 @@ class CancelView: AlertView {
                 alertView.transform = CGAffineTransform(translationX: translation.x, y: translation.y)
                 deltaX = abs(originalCenter.x + translation.x - (cancelIconView?.center.x)!) 
                 deltaY = abs(originalCenter.y + translation.y - (cancelIconView?.center.y)!)
-                cancelIconView?.alpha = -0.005 * (deltaX!/2 + deltaY!) + 1
-                let scale = -0.002*(deltaX! + deltaY!) + 2
+                cancelIconView?.alpha = -0.005 * (deltaX/2 + deltaY) + 1
+                let scale = -0.002*(deltaX + deltaY) + 2
                 cancelIconView?.transform = CGAffineTransform(scaleX: CGFloat(scale), y: CGFloat(scale))
             }
         } else if recognizer.state == .ended {
-            if deltaY! < CGFloat(60.0) && deltaX! < CGFloat(60.0) {
+            if deltaY < CGFloat(60.0) && deltaX < CGFloat(60.0) {
                 if let delegate = ctrlDelegate {
                     delegate.cancelAction()
                 }
