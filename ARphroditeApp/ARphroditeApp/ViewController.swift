@@ -58,12 +58,7 @@ extension ViewController: CommunicationDelegate {
         DispatchQueue.main.async {
             self.connectionAlert?.removeFromSuperview()
         }
-        DispatchQueue.global().async {
-            while true {
-                self.commManager.temp()
-                sleep(2)
-            }
-        }
+        
     }
     
     func connectionFailed() {
