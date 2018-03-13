@@ -20,9 +20,7 @@ class TableViewCell: UITableViewCell {
         self.layer.cornerRadius = 8
         self.layer.masksToBounds = true
     }
-    
-    
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         self.bounds = CGRect(x: self.bounds.origin.x, y: self.bounds.origin.y + 5, width: self.bounds.size.width - 20, height: self.bounds.size.height - 10)

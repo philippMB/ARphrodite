@@ -69,7 +69,6 @@ class CancelView: AlertView {
                 cancelIconView?.transform = CGAffineTransform(scaleX: (cancelImage?.size.width)!/(cancelIconView?.bounds.width)!, y: (cancelImage?.size.height)!/(cancelIconView?.bounds.height)!)
                 cancelIconView?.alpha = 0.0
             }
-            
         }
     }
 }

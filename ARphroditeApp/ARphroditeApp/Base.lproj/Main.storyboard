@@ -35,5 +35,37 @@
             </objects>
             <point key="canvasLocation" x="136.23188405797103" y="122.28260869565219"/>
         </scene>
+        <!--AR Controller-->
+        <scene sceneID="Pe2-FZ-Win">
+            <objects>
+                <viewController storyboardIdentifier="ARController" id="TPR-Lo-620" userLabel="AR Controller" customClass="ARController" customModule="ARphroditeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tSg-dx-hkI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPh-3U-ndF">
+                                <rect key="frame" x="184" y="641" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="pic:" destination="TPR-Lo-620" eventType="touchUpInside" id="OYh-t8-Sb1"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rvs-gk-pFb">
+                                <rect key="frame" x="25" y="186" width="364" height="364"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="lRo-F5-0rq"/>
+                    </view>
+                    <connections>
+                        <outlet property="previewView" destination="rvs-gk-pFb" id="WBo-xV-h44"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Re7-WI-qbD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="892.75362318840587" y="130.43478260869566"/>
+        </scene>
     </scenes>
 </document>

@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         let backgroundImage = UIImage(named: "Background")
         self.view.backgroundColor = UIColor(patternImage: backgroundImage!)
         
@@ -34,6 +34,7 @@ class ViewController: UIViewController {
         browsingView.rowHeight = 60.0
         
         // Do any additional setup after loading the view, typically from a nib.
+        connectionEstablished()
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,8 +58,11 @@ extension ViewController: CommunicationDelegate {
     func connectionEstablished() {
         DispatchQueue.main.async {
             self.connectionAlert?.removeFromSuperview()
+            
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ARController")
+            self.present(controller, animated: true, completion: nil)
+            
         }
-        
     }
     
     func connectionFailed() {

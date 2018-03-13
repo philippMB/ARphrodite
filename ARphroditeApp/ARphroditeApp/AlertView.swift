@@ -56,11 +56,9 @@ class AlertView: UIView, UIGestureRecognizerDelegate {
         dialog.font = UIFont.systemFont(ofSize: 17)
         
         alertView.addSubview(dialog)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
 }
