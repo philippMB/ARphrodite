@@ -36,7 +36,6 @@ class CameraOperator: NSObject {
     deinit {
         operation.cancel()
         captureSession.stopRunning()
-        print("Deinit")
     }
     
     func setupCaptureSession() {
@@ -72,7 +71,6 @@ class CameraOperator: NSObject {
     func configureOperation(delay: UInt32) {        
         operation.addExecutionBlock { [unowned self, weak operation = self.operation] in
             while !((operation!.isCancelled)) {
-                //let settings = AVCapturePhotoSettings()
                 self.photoOutput?.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
                 
                 sleep(delay)
