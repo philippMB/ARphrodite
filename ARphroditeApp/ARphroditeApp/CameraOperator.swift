@@ -9,15 +9,18 @@
 import UIKit
 import AVFoundation
 
+protocol CameraOperatorDelegate: class {
+    func receivedImage(_ image: UIImage)
+}
+
 class CameraOperator: NSObject {
+    
+    weak var delegate: CameraOperatorDelegate?
         
     let captureSession = AVCaptureSession()
     var camera: AVCaptureDevice?
-    var photoOutput: AVCapturePhotoOutput?
-    
-    var captureDevice: AVCaptureDevice?
-
-    var imageView: UIImageView?
+    var photoOutput: AVCapturePhotoOutput?    
+    let operation = BlockOperation()
     
     override init() {
         super.init()
@@ -25,8 +28,15 @@ class CameraOperator: NSObject {
         setupCaptureSession()
         setupDevice()
         setupInputOutput()
+        configureOperation(delay: 10)
         startSession()
                 
+    }
+    
+    deinit {
+        operation.cancel()
+        captureSession.stopRunning()
+        print("Deinit")
     }
     
     func setupCaptureSession() {
@@ -39,12 +49,12 @@ class CameraOperator: NSObject {
         camera = device[0]
         
         do {
-            try captureDevice?.lockForConfiguration()
+            try camera?.lockForConfiguration()
+            camera?.focusMode = .continuousAutoFocus
+            camera?.unlockForConfiguration()
         } catch {
-            //TODO: Error handling!
+            print("[Camera Operator] ERROR: Failed to lock for configuration. \(error)")
         }
-        captureDevice?.focusMode = .continuousAutoFocus
-        captureDevice?.unlockForConfiguration()
     }
     
     func setupInputOutput() {
@@ -55,80 +65,41 @@ class CameraOperator: NSObject {
             photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey : AVVideoCodecType.jpeg])], completionHandler: nil)
             captureSession.addOutput(photoOutput!)
         } catch {
-            print(error)
+            print("[Camera Operator] ERROR: Failed setting device input. \(error)")
+        }
+    }
+    
+    func configureOperation(delay: UInt32) {        
+        operation.addExecutionBlock { [unowned self, weak operation = self.operation] in
+            while !((operation!.isCancelled)) {
+                //let settings = AVCapturePhotoSettings()
+                self.photoOutput?.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+                
+                sleep(delay)
+            }
         }
     }
     
     func startSession() {
         captureSession.startRunning()
-    }
-    
-    var previewLayer: AVCaptureVideoPreviewLayer?
-    
-    func preview(on view: UIView) {
-        self.previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        self.previewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        self.previewLayer?.connection?.videoOrientation = .portrait
-        
-        view.layer.insertSublayer(self.previewLayer!, at: 0)
-        self.previewLayer?.frame = view.frame
-    }
-    
-    func pic(_ view: UIImageView) {
-        imageView = view
-        let settings = AVCapturePhotoSettings()
-        self.photoOutput?.capturePhoto(with: settings, delegate: self)
-    }
-}
-
-extension UIImage {
-    func crop(to rect: CGRect) -> UIImage {
-        var rect = rect
-        rect.origin.x*=self.scale
-        rect.origin.y*=self.scale
-        rect.size.width*=self.scale
-        rect.size.height*=self.scale
-        
-        let imageRef = self.cgImage!.cropping(to: rect)
-        let image = UIImage(cgImage: imageRef!, scale: self.scale, orientation: self.imageOrientation)
-        return image
-    }
-}
-
-extension UIImage {
-    func getPixelData() -> [Float] {
-        let pixelData = self.cgImage?.dataProvider?.data
-        let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-        var pixelInfo: Int
-        let imageWidth = Int(self.size.width)
-        let imageHeight = Int(self.size.height)
-        var width:Int = 0
-        var height:Int = 0
-        var pixel = Array(repeating: Float(0), count: (imageWidth * imageHeight))
-        
-        while width < imageWidth {
-            while height < imageHeight {
-                pixelInfo = ((Int(self.size.width) * width) + height) * 4 // y | x
-                let r = Float(data[pixelInfo])
-                let g = Float(data[pixelInfo+1])
-                let b = Float(data[pixelInfo+2])
                 
-                pixel[(width * imageHeight) + height] = Float((r + g + b)/3)
-                height += 1
-            }
-            width += 1
-            height = 0
+        DispatchQueue.global(qos: .utility).async {
+            let queue = OperationQueue()
+            queue.addOperation(self.operation)
         }
-        
-        return pixel
     }
 }
 
 extension CameraOperator: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        var image = UIImage(data: photo.fileDataRepresentation()!)
-        image = image?.crop(to: CGRect(x: ((image?.cgImage?.width)! / 2) - 1024, y: ((image?.cgImage?.height)! / 2) - 1024, width: 2048, height: 2048))
-        print(image?.size)
-        imageView?.image = image
+        if let imageData = photo.fileDataRepresentation() {
+            let image = UIImage(data: imageData)!
+            
+            if let delegate = delegate {
+                delegate.receivedImage(image)
+            }
+        } else {
+            print("[Camera Operator] ERROR: Could not extract photo. \(String(describing: error))")
+        }
     }
 }

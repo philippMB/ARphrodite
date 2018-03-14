@@ -86,11 +86,11 @@ class InvitationView: AlertView {
             }
         } else if recognizer.state == .ended {
             if deltaYCancel < CGFloat(60.0) && deltaXCancel < CGFloat(60.0) {
-                if let delegate = ctrlDelegate {
+                if let delegate = delegate {
                     delegate.cancelAction()
                 }
             } else if deltaYAccept < CGFloat(60.0) && deltaXAccept < CGFloat(60.0) {
-                if let delegate = ctrlDelegate {
+                if let delegate = delegate {
                     DispatchQueue.main.async {
                         self.dialog.text = "Verbinde..."
                     }

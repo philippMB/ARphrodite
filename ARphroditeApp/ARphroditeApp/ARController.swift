@@ -11,35 +11,31 @@ import CommunicationManager
 
 class ARController: UIViewController {
 
-    let commManager = CommunicationManagerSM.sharedInstance
-    
+    //let commManager = CommunicationManagerSM.sharedInstance
     
     @IBOutlet weak var previewView: UIImageView!
-    let cam = CameraOperator() 
+    
+    var camera: CameraOperator? = CameraOperator() 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        camera!.delegate = self
+        
         // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func pic(_ sender: UIButton) {
-        cam.pic(previewView)
+        camera = nil
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Lobby")
+        self.present(controller, animated: true, completion: nil)
+    }
+}
+
+extension ARController: CameraOperatorDelegate {
+    func receivedImage(_ image: UIImage) {
+        previewView.image = image
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

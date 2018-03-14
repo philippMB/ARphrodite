@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         browsingView.rowHeight = 60.0
         
         // Do any additional setup after loading the view, typically from a nib.
-        connectionEstablished()
+        //connectionEstablished()
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
 extension ViewController: CommunicationDelegate {
     func receivedInvitation(from peer: String) {
         connectionAlert = InvitationView(name: peer)
-        connectionAlert?.ctrlDelegate = self
+        connectionAlert?.delegate = self
         self.view.addSubview(connectionAlert!)
         self.view.bringSubview(toFront: connectionAlert!)
         UIView.animate(withDuration: 0.1, animations: {
@@ -61,7 +61,6 @@ extension ViewController: CommunicationDelegate {
             
             let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ARController")
             self.present(controller, animated: true, completion: nil)
-            
         }
     }
     
@@ -121,7 +120,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         DispatchQueue.global().async {
             self.commManager.connect(to: indexPath[1])
         }
-        connectionAlert?.ctrlDelegate = self
+        connectionAlert?.delegate = self
         self.view.addSubview(connectionAlert!)
         self.view.bringSubview(toFront: connectionAlert!)
         UIView.animate(withDuration: 0.1, animations: {

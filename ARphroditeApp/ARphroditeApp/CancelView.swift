@@ -61,7 +61,7 @@ class CancelView: AlertView {
             }
         } else if recognizer.state == .ended {
             if deltaY < CGFloat(60.0) && deltaX < CGFloat(60.0) {
-                if let delegate = ctrlDelegate {
+                if let delegate = delegate {
                     delegate.cancelAction()
                 }
             } else {
