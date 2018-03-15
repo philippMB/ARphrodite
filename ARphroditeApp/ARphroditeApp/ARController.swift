@@ -11,6 +11,9 @@ import CommunicationManager
 
 class ARController: UIViewController {
 
+    @IBOutlet weak var testView: UIView!
+    let pairingView = PairingView()
+    
     let commManager = CommunicationManagerSM.sharedInstance
     var camera: CameraOperator? = CameraOperator() 
     
@@ -22,6 +25,12 @@ class ARController: UIViewController {
         super.viewDidLoad()
         
         camera!.delegate = self
+        commManager.delegate = self
+        
+        camera?.displayPreview(on: testView)
+        
+        testView.addSubview(pairingView)
+        pairingView.center = testView.center
         
         DispatchQueue.global(qos: .userInteractive).async {
             self.popQueue()
@@ -30,11 +39,14 @@ class ARController: UIViewController {
     }
     
     func popQueue() {
-        queue.wait()
-        if let imageData = UIImagePNGRepresentation(imageBuffer.popLast()!) {
-            //TODO: use result?
-            commManager.send(data: imageData)
+        while true {
+            queue.wait()
+            if let imageData = UIImagePNGRepresentation(imageBuffer.popLast()!) {
+                //TODO: use result?
+                commManager.send(data: imageData)
+            }
         }
+        
     }
 }
 

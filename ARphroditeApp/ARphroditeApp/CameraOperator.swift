@@ -86,6 +86,18 @@ class CameraOperator: NSObject {
             queue.addOperation(self.operation)
         }
     }
+    
+    func displayPreview(on view: UIView) {
+        var previewLayer: AVCaptureVideoPreviewLayer
+        
+        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        previewLayer.connection?.videoOrientation = .portrait
+        
+        view.layer.insertSublayer(previewLayer, at: 0)
+        previewLayer.frame = view.frame
+    }
+    
 }
 
 extension CameraOperator: AVCapturePhotoCaptureDelegate {
