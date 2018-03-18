@@ -34,7 +34,6 @@ class ViewController: UIViewController {
         browsingView.rowHeight = 60.0
         
         // Do any additional setup after loading the view, typically from a nib.
-        //connectionEstablished()
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,7 +58,7 @@ extension ViewController: CommunicationDelegate {
         DispatchQueue.main.async {
             self.connectionAlert?.removeFromSuperview()
             
-            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ARController")
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TestController")
             self.present(controller, animated: true, completion: nil)
         }
     }

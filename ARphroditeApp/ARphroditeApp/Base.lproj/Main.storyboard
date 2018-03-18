@@ -60,5 +60,30 @@
             </objects>
             <point key="canvasLocation" x="892.75362318840587" y="130.43478260869566"/>
         </scene>
+        <!--Test View Controller-->
+        <scene sceneID="rZc-ZW-osb">
+            <objects>
+                <viewController storyboardIdentifier="TestController" id="wdk-c4-88b" customClass="TestViewController" customModule="ARphroditeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="car-yD-jP9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ya1-HN-7aX">
+                                <rect key="frame" x="184" y="609" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="press:" destination="wdk-c4-88b" eventType="touchUpInside" id="Wke-0k-VK2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="IMF-Vf-Pg4"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uGe-PJ-Njj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1826" y="242"/>
+        </scene>
     </scenes>
 </document>
