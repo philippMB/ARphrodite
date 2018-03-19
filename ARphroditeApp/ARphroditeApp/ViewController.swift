@@ -56,6 +56,9 @@ extension ViewController: CommunicationDelegate {
     
     func connectionEstablished() {
         DispatchQueue.main.async {
+            let notificationFeedback = UINotificationFeedbackGenerator()
+            notificationFeedback.notificationOccurred(.success)
+            
             self.connectionAlert?.removeFromSuperview()
             
             let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TestController")
@@ -65,6 +68,9 @@ extension ViewController: CommunicationDelegate {
     
     func connectionFailed() {
         DispatchQueue.main.async {
+            let notificationFeedback = UINotificationFeedbackGenerator()
+            notificationFeedback.notificationOccurred(.error)
+            
             self.connectionAlert?.removeFromSuperview()
         }
     }
@@ -119,6 +125,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         DispatchQueue.global().async {
             self.commManager.connect(to: indexPath[1])
         }
+        
+        let selectionFeedback = UISelectionFeedbackGenerator()
+        selectionFeedback.selectionChanged()
+        
         connectionAlert?.delegate = self
         self.view.addSubview(connectionAlert!)
         self.view.bringSubview(toFront: connectionAlert!)
