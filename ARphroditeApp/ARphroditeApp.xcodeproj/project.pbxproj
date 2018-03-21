@@ -14,8 +14,6 @@
 		17EBDB4C204690F800C7FCF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17EBDB4A204690F800C7FCF7 /* LaunchScreen.storyboard */; };
 		17EBDB57204690F900C7FCF7 /* ARphroditeAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EBDB56204690F900C7FCF7 /* ARphroditeAppTests.swift */; };
 		17EBDB62204690F900C7FCF7 /* ARphroditeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EBDB61204690F900C7FCF7 /* ARphroditeAppUITests.swift */; };
-		393FE4D120625A630034140E /* XCorrelation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393FE4CD20625A300034140E /* XCorrelation.framework */; };
-		393FE4D220625A630034140E /* XCorrelation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 393FE4CD20625A300034140E /* XCorrelation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9235E99E52256E8D0CC9F867 /* Pods_ARphroditeAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9114E6CB57DD36B8FB54AE8D /* Pods_ARphroditeAppTests.framework */; };
 		C60579A7F213E3E2E72101E2 /* Pods_ARphroditeAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB22A8F016BDAAC0E12F719 /* Pods_ARphroditeAppUITests.framework */; };
 		FA8A6A288A84C26F6F84EABE /* Pods_ARphroditeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E11B45CA901CBA12FCD4229B /* Pods_ARphroditeApp.framework */; };
@@ -36,48 +34,34 @@
 			remoteGlobalIDString = 17EBDB3D204690F800C7FCF7;
 			remoteInfo = ARphroditeApp;
 		};
-		393FE4CC20625A300034140E /* PBXContainerItemProxy */ = {
+		17F86F492062727700F332ED /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 393FE4C720625A300034140E /* XCorrelation.xcodeproj */;
+			containerPortal = 17F86F442062727700F332ED /* CommunicationManager.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 17EBDB9D2046AE5C00C7FCF7;
+			remoteInfo = CommunicationManager;
+		};
+		17F86F4B2062727700F332ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17F86F442062727700F332ED /* CommunicationManager.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 17EBDBA62046AE5C00C7FCF7;
+			remoteInfo = CommunicationManagerTests;
+		};
+		17F86F522062C83E00F332ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17F86F4D2062C83E00F332ED /* XCorrelation.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 391D8454205A8352003F326F;
 			remoteInfo = XCorrelation;
 		};
-		393FE4CE20625A300034140E /* PBXContainerItemProxy */ = {
+		17F86F542062C83E00F332ED /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 393FE4C720625A300034140E /* XCorrelation.xcodeproj */;
+			containerPortal = 17F86F4D2062C83E00F332ED /* XCorrelation.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 391D845D205A8352003F326F;
 			remoteInfo = XCorrelationTests;
 		};
-		393FE4D320625A630034140E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 393FE4C720625A300034140E /* XCorrelation.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 391D8453205A8352003F326F;
-			remoteInfo = XCorrelation;
-		};
-        17F86F312062606900F332ED /* PBXContainerItemProxy */ = {
-            isa = PBXContainerItemProxy;
-            containerPortal = 17F86F2C2062606900F332ED /* CommunicationManager.xcodeproj */;
-            proxyType = 2;
-            remoteGlobalIDString = 17EBDB9D2046AE5C00C7FCF7;
-            remoteInfo = CommunicationManager;
-        };
-        17F86F332062606900F332ED /* PBXContainerItemProxy */ = {
-            isa = PBXContainerItemProxy;
-            containerPortal = 17F86F2C2062606900F332ED /* CommunicationManager.xcodeproj */;
-            proxyType = 2;
-            remoteGlobalIDString = 17EBDBA62046AE5C00C7FCF7;
-            remoteInfo = CommunicationManagerTests;
-        };
-            17F86F372062608000F332ED /* PBXContainerItemProxy */ = {
-            isa = PBXContainerItemProxy;
-            containerPortal = 17F86F2C2062606900F332ED /* CommunicationManager.xcodeproj */;
-            proxyType = 1;
-            remoteGlobalIDString = 17EBDB9C2046AE5C00C7FCF7;
-            remoteInfo = CommunicationManager;
-        };
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -87,8 +71,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				393FE4D220625A630034140E /* XCorrelation.framework in Embed Frameworks */,
-                17F86F362062608000F332ED /* CommunicationManager.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,7 +92,8 @@
 		17EBDB5D204690F900C7FCF7 /* ARphroditeAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARphroditeAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17EBDB61204690F900C7FCF7 /* ARphroditeAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARphroditeAppUITests.swift; sourceTree = "<group>"; };
 		17EBDB63204690F900C7FCF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		393FE4C720625A300034140E /* XCorrelation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XCorrelation.xcodeproj; path = ../../../XCorr/XCorrelation/XCorrelation.xcodeproj; sourceTree = "<group>"; };
+		17F86F442062727700F332ED /* CommunicationManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommunicationManager.xcodeproj; path = ../Frameworks/CommunicationManager/CommunicationManager.xcodeproj; sourceTree = "<group>"; };
+		17F86F4D2062C83E00F332ED /* XCorrelation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XCorrelation.xcodeproj; path = ../Frameworks/XCorrelation/XCorrelation.xcodeproj; sourceTree = "<group>"; };
 		43C7CFB5CA5EFDC32157C871 /* Pods-ARphroditeAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARphroditeAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARphroditeAppUITests/Pods-ARphroditeAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4F690DBB3B26F5ED1DD501FC /* Pods-ARphroditeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARphroditeApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARphroditeApp/Pods-ARphroditeApp.release.xcconfig"; sourceTree = "<group>"; };
 		51B1AF4E37B3964C6287CBD0 /* Pods-ARphroditeAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARphroditeAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARphroditeAppTests/Pods-ARphroditeAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,7 +109,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				393FE4D120625A630034140E /* XCorrelation.framework in Frameworks */,
 				FA8A6A288A84C26F6F84EABE /* Pods_ARphroditeApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,7 +135,8 @@
 		17EBDB35204690F800C7FCF7 = {
 			isa = PBXGroup;
 			children = (
-				393FE4C720625A300034140E /* XCorrelation.xcodeproj */,
+				17F86F4D2062C83E00F332ED /* XCorrelation.xcodeproj */,
+				17F86F442062727700F332ED /* CommunicationManager.xcodeproj */,
 				17EBDB40204690F800C7FCF7 /* ARphroditeApp */,
 				17EBDB55204690F900C7FCF7 /* ARphroditeAppTests */,
 				17EBDB60204690F900C7FCF7 /* ARphroditeAppUITests */,
@@ -204,11 +187,20 @@
 			path = ARphroditeAppUITests;
 			sourceTree = "<group>";
 		};
-		393FE4C820625A300034140E /* Products */ = {
+		17F86F452062727700F332ED /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				393FE4CD20625A300034140E /* XCorrelation.framework */,
-				393FE4CF20625A300034140E /* XCorrelationTests.xctest */,
+				17F86F4A2062727700F332ED /* CommunicationManager.framework */,
+				17F86F4C2062727700F332ED /* CommunicationManagerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		17F86F4E2062C83E00F332ED /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17F86F532062C83E00F332ED /* XCorrelation.framework */,
+				17F86F552062C83E00F332ED /* XCorrelationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -254,7 +246,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				393FE4D420625A630034140E /* PBXTargetDependency */,
 			);
 			name = ARphroditeApp;
 			productName = ARphroditeApp;
@@ -342,8 +333,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 393FE4C820625A300034140E /* Products */;
-					ProjectRef = 393FE4C720625A300034140E /* XCorrelation.xcodeproj */;
+					ProductGroup = 17F86F452062727700F332ED /* Products */;
+					ProjectRef = 17F86F442062727700F332ED /* CommunicationManager.xcodeproj */;
+				},
+				{
+					ProductGroup = 17F86F4E2062C83E00F332ED /* Products */;
+					ProjectRef = 17F86F4D2062C83E00F332ED /* XCorrelation.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -356,18 +351,32 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		393FE4CD20625A300034140E /* XCorrelation.framework */ = {
+		17F86F4A2062727700F332ED /* CommunicationManager.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommunicationManager.framework;
+			remoteRef = 17F86F492062727700F332ED /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17F86F4C2062727700F332ED /* CommunicationManagerTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CommunicationManagerTests.xctest;
+			remoteRef = 17F86F4B2062727700F332ED /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17F86F532062C83E00F332ED /* XCorrelation.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = XCorrelation.framework;
-			remoteRef = 393FE4CC20625A300034140E /* PBXContainerItemProxy */;
+			remoteRef = 17F86F522062C83E00F332ED /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		393FE4CF20625A300034140E /* XCorrelationTests.xctest */ = {
+		17F86F552062C83E00F332ED /* XCorrelationTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = XCorrelationTests.xctest;
-			remoteRef = 393FE4CE20625A300034140E /* PBXContainerItemProxy */;
+			remoteRef = 17F86F542062C83E00F332ED /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -587,11 +596,6 @@
 			isa = PBXTargetDependency;
 			target = 17EBDB3D204690F800C7FCF7 /* ARphroditeApp */;
 			targetProxy = 17EBDB5E204690F900C7FCF7 /* PBXContainerItemProxy */;
-		};
-		393FE4D420625A630034140E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = XCorrelation;
-			targetProxy = 393FE4D320625A630034140E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
