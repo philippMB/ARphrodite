@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         let backgroundImage = UIImage(named: "Background")
         self.view.backgroundColor = UIColor(patternImage: backgroundImage!)
         
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
 extension ViewController: CommunicationDelegate {
     func receivedInvitation(from peer: String) {
         connectionAlert = InvitationView(name: peer)
-        connectionAlert?.ctrlDelegate = self
+        connectionAlert?.delegate = self
         self.view.addSubview(connectionAlert!)
         self.view.bringSubview(toFront: connectionAlert!)
         UIView.animate(withDuration: 0.1, animations: {
@@ -56,13 +56,21 @@ extension ViewController: CommunicationDelegate {
     
     func connectionEstablished() {
         DispatchQueue.main.async {
+            let notificationFeedback = UINotificationFeedbackGenerator()
+            notificationFeedback.notificationOccurred(.success)
+            
             self.connectionAlert?.removeFromSuperview()
+            
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TestController")
+            self.present(controller, animated: true, completion: nil)
         }
-        
     }
     
     func connectionFailed() {
         DispatchQueue.main.async {
+            let notificationFeedback = UINotificationFeedbackGenerator()
+            notificationFeedback.notificationOccurred(.error)
+            
             self.connectionAlert?.removeFromSuperview()
         }
     }
@@ -117,7 +125,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         DispatchQueue.global().async {
             self.commManager.connect(to: indexPath[1])
         }
-        connectionAlert?.ctrlDelegate = self
+        
+        let selectionFeedback = UISelectionFeedbackGenerator()
+        selectionFeedback.selectionChanged()
+        
+        connectionAlert?.delegate = self
         self.view.addSubview(connectionAlert!)
         self.view.bringSubview(toFront: connectionAlert!)
         UIView.animate(withDuration: 0.1, animations: {

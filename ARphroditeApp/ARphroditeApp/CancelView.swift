@@ -61,7 +61,7 @@ class CancelView: AlertView {
             }
         } else if recognizer.state == .ended {
             if deltaY < CGFloat(60.0) && deltaX < CGFloat(60.0) {
-                if let delegate = ctrlDelegate {
+                if let delegate = delegate {
                     delegate.cancelAction()
                 }
             } else {
@@ -69,7 +69,6 @@ class CancelView: AlertView {
                 cancelIconView?.transform = CGAffineTransform(scaleX: (cancelImage?.size.width)!/(cancelIconView?.bounds.width)!, y: (cancelImage?.size.height)!/(cancelIconView?.bounds.height)!)
                 cancelIconView?.alpha = 0.0
             }
-            
         }
     }
 }

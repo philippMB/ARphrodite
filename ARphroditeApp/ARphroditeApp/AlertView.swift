@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol ControllerCallbackDelegate {
+protocol ControllerCallbackDelegate: class {
     func cancelAction()
     func acceptAction()
 }
 
 class AlertView: UIView, UIGestureRecognizerDelegate {
     
-    var ctrlDelegate: ControllerCallbackDelegate?
+    weak var delegate: ControllerCallbackDelegate?
     
     let screenSize = UIScreen.main.bounds.size
     let alertView = UIView()
@@ -56,11 +56,9 @@ class AlertView: UIView, UIGestureRecognizerDelegate {
         dialog.font = UIFont.systemFont(ofSize: 17)
         
         alertView.addSubview(dialog)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
 }
