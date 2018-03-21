@@ -57,6 +57,27 @@
 			remoteGlobalIDString = 391D8453205A8352003F326F;
 			remoteInfo = XCorrelation;
 		};
+        17F86F312062606900F332ED /* PBXContainerItemProxy */ = {
+            isa = PBXContainerItemProxy;
+            containerPortal = 17F86F2C2062606900F332ED /* CommunicationManager.xcodeproj */;
+            proxyType = 2;
+            remoteGlobalIDString = 17EBDB9D2046AE5C00C7FCF7;
+            remoteInfo = CommunicationManager;
+        };
+        17F86F332062606900F332ED /* PBXContainerItemProxy */ = {
+            isa = PBXContainerItemProxy;
+            containerPortal = 17F86F2C2062606900F332ED /* CommunicationManager.xcodeproj */;
+            proxyType = 2;
+            remoteGlobalIDString = 17EBDBA62046AE5C00C7FCF7;
+            remoteInfo = CommunicationManagerTests;
+        };
+            17F86F372062608000F332ED /* PBXContainerItemProxy */ = {
+            isa = PBXContainerItemProxy;
+            containerPortal = 17F86F2C2062606900F332ED /* CommunicationManager.xcodeproj */;
+            proxyType = 1;
+            remoteGlobalIDString = 17EBDB9C2046AE5C00C7FCF7;
+            remoteInfo = CommunicationManager;
+        };
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -67,6 +88,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				393FE4D220625A630034140E /* XCorrelation.framework in Embed Frameworks */,
+                17F86F362062608000F332ED /* CommunicationManager.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
