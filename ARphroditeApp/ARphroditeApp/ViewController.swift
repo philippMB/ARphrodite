@@ -61,7 +61,7 @@ extension ViewController: CommunicationDelegate {
             
             self.connectionAlert?.removeFromSuperview()
             
-            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TestController")
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ARController")
             self.present(controller, animated: true, completion: nil)
         }
     }

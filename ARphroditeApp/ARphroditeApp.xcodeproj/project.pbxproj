@@ -19,6 +19,10 @@
 		17EBDB62204690F900C7FCF7 /* ARphroditeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EBDB61204690F900C7FCF7 /* ARphroditeAppUITests.swift */; };
 		17ECA30A205400130041490D /* CancelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ECA309205400130041490D /* CancelView.swift */; };
 		17ECA30C205416060041490D /* InvitationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ECA30B205416060041490D /* InvitationView.swift */; };
+		17F86F6B2062D1BA00F332ED /* XCorrelation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F86F532062C83E00F332ED /* XCorrelation.framework */; };
+		17F86F6C2062D1BA00F332ED /* XCorrelation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 17F86F532062C83E00F332ED /* XCorrelation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		17F86F712062D1C300F332ED /* CommunicationManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F86F4A2062727700F332ED /* CommunicationManager.framework */; };
+		17F86F722062D1C300F332ED /* CommunicationManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 17F86F4A2062727700F332ED /* CommunicationManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		17FA035A204B6EB100FCDB13 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA0359204B6EB100FCDB13 /* TableViewCell.swift */; };
 		17FA0360204C56A400FCDB13 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA035F204C56A400FCDB13 /* AlertView.swift */; };
 		9235E99E52256E8D0CC9F867 /* Pods_ARphroditeAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9114E6CB57DD36B8FB54AE8D /* Pods_ARphroditeAppTests.framework */; };
@@ -69,6 +73,20 @@
 			remoteGlobalIDString = 391D845D205A8352003F326F;
 			remoteInfo = XCorrelationTests;
 		};
+		17F86F6D2062D1BA00F332ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17F86F4D2062C83E00F332ED /* XCorrelation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 391D8453205A8352003F326F;
+			remoteInfo = XCorrelation;
+		};
+		17F86F732062D1C300F332ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17F86F442062727700F332ED /* CommunicationManager.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 17EBDB9C2046AE5C00C7FCF7;
+			remoteInfo = CommunicationManager;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,6 +96,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				17F86F6C2062D1BA00F332ED /* XCorrelation.framework in Embed Frameworks */,
+				17F86F722062D1C300F332ED /* CommunicationManager.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,10 +122,10 @@
 		17EBDB5D204690F900C7FCF7 /* ARphroditeAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARphroditeAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17EBDB61204690F900C7FCF7 /* ARphroditeAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARphroditeAppUITests.swift; sourceTree = "<group>"; };
 		17EBDB63204690F900C7FCF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		17F86F442062727700F332ED /* CommunicationManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommunicationManager.xcodeproj; path = ../Frameworks/CommunicationManager/CommunicationManager.xcodeproj; sourceTree = "<group>"; };
-		17F86F4D2062C83E00F332ED /* XCorrelation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XCorrelation.xcodeproj; path = ../Frameworks/XCorrelation/XCorrelation.xcodeproj; sourceTree = "<group>"; };
 		17ECA309205400130041490D /* CancelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelView.swift; sourceTree = "<group>"; };
 		17ECA30B205416060041490D /* InvitationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationView.swift; sourceTree = "<group>"; };
+		17F86F442062727700F332ED /* CommunicationManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommunicationManager.xcodeproj; path = ../Frameworks/CommunicationManager/CommunicationManager.xcodeproj; sourceTree = "<group>"; };
+		17F86F4D2062C83E00F332ED /* XCorrelation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XCorrelation.xcodeproj; path = ../Frameworks/XCorrelation/XCorrelation.xcodeproj; sourceTree = "<group>"; };
 		17FA0359204B6EB100FCDB13 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		17FA035F204C56A400FCDB13 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		43C7CFB5CA5EFDC32157C871 /* Pods-ARphroditeAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARphroditeAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARphroditeAppUITests/Pods-ARphroditeAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +143,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17F86F6B2062D1BA00F332ED /* XCorrelation.framework in Frameworks */,
+				17F86F712062D1C300F332ED /* CommunicationManager.framework in Frameworks */,
 				FA8A6A288A84C26F6F84EABE /* Pods_ARphroditeApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,6 +289,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				17F86F6E2062D1BA00F332ED /* PBXTargetDependency */,
+				17F86F742062D1C300F332ED /* PBXTargetDependency */,
 			);
 			name = ARphroditeApp;
 			productName = ARphroditeApp;
@@ -624,6 +648,16 @@
 			isa = PBXTargetDependency;
 			target = 17EBDB3D204690F800C7FCF7 /* ARphroditeApp */;
 			targetProxy = 17EBDB5E204690F900C7FCF7 /* PBXContainerItemProxy */;
+		};
+		17F86F6E2062D1BA00F332ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = XCorrelation;
+			targetProxy = 17F86F6D2062D1BA00F332ED /* PBXContainerItemProxy */;
+		};
+		17F86F742062D1C300F332ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CommunicationManager;
+			targetProxy = 17F86F732062D1C300F332ED /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
