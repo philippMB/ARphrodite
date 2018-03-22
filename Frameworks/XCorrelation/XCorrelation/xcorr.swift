@@ -79,15 +79,15 @@ public class xcorr {
         vDSP_destroy_fftsetup(setup2048)
     }
     
-    func correlate_small(orig: UIImage, small: UIImage) -> (Int, Int) {
-        let scale_x = Float(orig.size.width/2048)
-        let scale_y = Float(orig.size.height/2048)
-        let distorted_width_small = Int(round(Float(small.size.width) * scale_x))
-        let distorted_height_small = Int(round(Float(small.size.height) * scale_y))
+    func correlate_small(orig: UIImage, small: UIImage) -> (indexX: Int, indexY: Int, variance: Float) {
+        let scaleX = Float(orig.size.width/2048)
+        let scaleY = Float(orig.size.height/2048)
+        let distortedWidthSmall = Int(round(Float(small.size.width) * scaleX))
+        let distortedHeightSmall = Int(round(Float(small.size.height) * scaleY))
         let image = orig.resize(new_width: 2048, new_height: 2048)
-        var image2 = small.resize(new_width: distorted_width_small, new_height: distorted_height_small)
+        var image2 = small.resize(new_width: distortedWidthSmall, new_height: distortedHeightSmall)
         // determine maximal 2**n fittin for small filter
-        let small_filter_size = 2^Int(round(min(log2(Float(distorted_height_small)), log2(Float(distorted_width_small)))))
+        let small_filter_size = 2^Int(round(min(log2(Float(distortedHeightSmall)), log2(Float(distortedWidthSmall)))))
         // crop image to filter_size around the center of the image
         image2 = image2.crop(rect: CGRect(x: Int(image2.size.width/2.0) - Int(small_filter_size/2),
                                           y: Int(image2.size.height/2.0) - Int(small_filter_size/2),
@@ -95,30 +95,32 @@ public class xcorr {
                                           height: small_filter_size))
         let x : Int
         let y : Int
+        let imgVariance : Float
         
-        (x, y) = calc_xcorr(image: image, image2: image2)
+        (x, y, imgVariance) = calcXCorr(image: image, image2: image2)
         
-        return (Int(round(Float(x) * scale_x)), Int(round(Float(y) * scale_y)))
+        return (Int(round(Float(x) * scaleX)), Int(round(Float(y) * scaleY)), imgVariance)
     }
     
-    func correlate_full(img: UIImage, img2: UIImage) -> (Int, Int) {
-        let scale_x = Float(img.size.width/2048)
-        let scale_y = Float(img.size.height/2048)
+    func correlate_full(img: UIImage, img2: UIImage) -> (indexX: Int, indexY: Int, variance: Float) {
+        let scaleX = Float(img.size.width/2048)
+        let scaleY = Float(img.size.height/2048)
         let image = img.resize(new_width: 2048, new_height: 2048)
         let image2 = img2.resize(new_width: 2048, new_height: 2048)
         let x : Int
         let y : Int
+        let imgVariance : Float
         
-        (x, y) = calc_xcorr(image: image, image2: image2)
+        (x, y, imgVariance) = calcXCorr(image: image, image2: image2)
         
-        return (Int(round(Float(x) * scale_x)), Int(round(Float(y) * scale_y)))
+        return (Int(round(Float(x) * scaleX)), Int(round(Float(y) * scaleY)), imgVariance)
     }
     
-    func calc_xcorr(image: UIImage, image2: UIImage) -> (Int, Int) {
+    func calcXCorr(image: UIImage, image2: UIImage) -> (Int, Int, Float) {
         let nRows = image.cgImage?.width
         let nCols = image.cgImage?.height
-        let forward_dir = FFTDirection(FFT_FORWARD)
-        let inverse_dir = FFTDirection(FFT_INVERSE)
+        let forwardDir = FFTDirection(FFT_FORWARD)
+        let inverseDir = FFTDirection(FFT_INVERSE)
         let n = nRows! * nCols!
         
         // preparation of arrays
@@ -134,8 +136,8 @@ public class xcorr {
         let rowStride = vDSP_Stride(nRows!)
         let colStride = vDSP_Stride(1)
         // fft for both images
-        vDSP_fft2d_zip(setup2048, &splitComplex, rowStride, colStride, log2n0c, log2n1r, forward_dir)
-        vDSP_fft2d_zip(setup2048, &splitComplex2, rowStride, colStride, log2n0c, log2n1r, forward_dir)
+        vDSP_fft2d_zip(setup2048, &splitComplex, rowStride, colStride, log2n0c, log2n1r, forwardDir)
+        vDSP_fft2d_zip(setup2048, &splitComplex2, rowStride, colStride, log2n0c, log2n1r, forwardDir)
         // multiply image 1 with complex conjugate of image2 in place
         for i in 0...(realArray.count - 1) {
             let x1 = realArray[i] / Float(n)
@@ -148,16 +150,43 @@ public class xcorr {
             imagArray[i] = x2 * y1 - y2 * x1
         }
         // ifft of product
-        vDSP_fft2d_zip(setup2048, &splitComplex, rowStride, colStride, log2n0c, log2n1r, inverse_dir)
+        vDSP_fft2d_zip(setup2048, &splitComplex, rowStride, colStride, log2n0c, log2n1r, inverseDir)
+        
+        let avg = average(realArray)
+        var normalizedArray = realArray
+        for i in 0...realArray.count-1
+        {
+            normalizedArray[i] = realArray[i] / avg
+        }
+        let imgVariance = variance(normalizedArray)
         
         var max:Float = 0
         var index:vDSP_Length = 0
         vDSP_maxvi(realArray, 1, &max, &index, vDSP_Length(realArray.count))
-        let index_x = Int(index) % nRows!
-        let index_y = Int(index) / 1024
-        print("Max: ", max, " Index: (", index_x, "|", index_y, ")")
+        let indexX = Int(index) % nRows!
+        let indexY = Int(index) / 1024
+        print("Max: ", max, " Index: (", indexX, "|", indexY, ")")
         
-        return (index_x, index_y)
+        return (indexX, indexY, imgVariance)
+    }
+    
+    func variance(_ values: [Float]) -> Float {
+        let count = Float(values.count)
+        
+        let averageValue = average(values)
+        let numerator = values.reduce(0) {
+            total, value in total + pow(averageValue - value, 2)
+            }
+        return numerator / (count - 1)
+    }
+    
+    func average(_ values: [Float]) -> Float {
+        let count = Float(values.count)
+        return sum(values) / count
+    }
+    
+    func sum(_ values: [Float]) -> Float {
+        return values.reduce(0, +)
     }
 
 }
