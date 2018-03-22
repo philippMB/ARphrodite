@@ -68,10 +68,10 @@ extension UIImage {
 }
 
 
-public class xcorr {
+public class XCorrelation {
     var setup2048 : FFTSetup
     
-    init() {
+    public init() {
         setup2048 = vDSP_create_fftsetup(vDSP_Length(22), FFTRadix(FFT_RADIX2))!
     }
     
@@ -79,7 +79,7 @@ public class xcorr {
         vDSP_destroy_fftsetup(setup2048)
     }
     
-    func correlate_small(orig: UIImage, small: UIImage) -> (indexX: Int, indexY: Int, variance: Float) {
+    public func correlateSmall(orig: UIImage, small: UIImage) -> (indexX: Int, indexY: Int, variance: Float) {
         let scaleX = Float(orig.size.width/2048)
         let scaleY = Float(orig.size.height/2048)
         let distortedWidthSmall = Int(round(Float(small.size.width) * scaleX))
@@ -102,7 +102,7 @@ public class xcorr {
         return (Int(round(Float(x) * scaleX)), Int(round(Float(y) * scaleY)), imgVariance)
     }
     
-    func correlate_full(img: UIImage, img2: UIImage) -> (indexX: Int, indexY: Int, variance: Float) {
+    public func correlateFull(img: UIImage, img2: UIImage) -> (indexX: Int, indexY: Int, variance: Float) {
         let scaleX = Float(img.size.width/2048)
         let scaleY = Float(img.size.height/2048)
         let image = img.resize(new_width: 2048, new_height: 2048)

@@ -8,6 +8,7 @@
 
 import UIKit
 import CommunicationManager
+import XCorrelation
 
 class ViewController: UIViewController {
         
@@ -18,7 +19,7 @@ class ViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         let backgroundImage = UIImage(named: "Background")
         self.view.backgroundColor = UIColor(patternImage: backgroundImage!)
         

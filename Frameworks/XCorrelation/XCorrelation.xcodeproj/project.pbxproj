@@ -10,7 +10,7 @@
 		391D845E205A8352003F326F /* XCorrelation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391D8454205A8352003F326F /* XCorrelation.framework */; };
 		391D8463205A8352003F326F /* XCorrelationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391D8462205A8352003F326F /* XCorrelationTests.swift */; };
 		391D8465205A8352003F326F /* XCorrelation.h in Headers */ = {isa = PBXBuildFile; fileRef = 391D8457205A8352003F326F /* XCorrelation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		391D846F205A8460003F326F /* xcorr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391D846E205A8460003F326F /* xcorr.swift */; };
+		391D846F205A8460003F326F /* XCorrelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391D846E205A8460003F326F /* XCorrelation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +30,7 @@
 		391D845D205A8352003F326F /* XCorrelationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XCorrelationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		391D8462205A8352003F326F /* XCorrelationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCorrelationTests.swift; sourceTree = "<group>"; };
 		391D8464205A8352003F326F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		391D846E205A8460003F326F /* xcorr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xcorr.swift; sourceTree = "<group>"; };
+		391D846E205A8460003F326F /* XCorrelation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCorrelation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +75,7 @@
 			children = (
 				391D8457205A8352003F326F /* XCorrelation.h */,
 				391D8458205A8352003F326F /* Info.plist */,
-				391D846E205A8460003F326F /* xcorr.swift */,
+				391D846E205A8460003F326F /* XCorrelation.swift */,
 			);
 			path = XCorrelation;
 			sourceTree = "<group>";
@@ -200,7 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				391D846F205A8460003F326F /* xcorr.swift in Sources */,
+				391D846F205A8460003F326F /* XCorrelation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
